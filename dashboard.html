@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIVE COUNT - SMAN 4 CIMAHI</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop');
+    }
+
+    body {
+      background-image: linear-gradient(rgba(10, 15, 30, 0.78), rgba(10, 15, 30, 0.88)), var(--bg-image);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+    }
+
+    .header-live {
+      padding: 15px 28px;
+      border-bottom: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .logo-header-dash {
+      height: 60px;
+      width: 60px;
+      object-fit: contain;
+      background: white;
+      padding: 5px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .live-badge {
+      background-color: #ef4444;
+      color: white;
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 0.82rem;
+      letter-spacing: 0.8px;
+      animation: blink 1.2s infinite;
+      display: inline-block;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+
+    .panel-box {
+      border-radius: 24px;
+      padding: 22px 18px;
+    }
+
+    .item-calon-live {
+      background: rgba(15, 23, 42, 0.58);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+    }
+
+    .foto-live {
+      width: 85px;
+      height: 92px;
+      object-fit: contain;
+      object-position: bottom;
+      margin-top: -20px;
+      filter: drop-shadow(0 6px 8px rgba(0,0,0,0.6));
+      flex-shrink: 0;
+    }
+
+    .nama-kandidat-live {
+      font-size: 1.12rem;
+      line-height: 1.3;
+    }
+
+    .skor-kandidat-live {
+      font-size: 1.12rem;
+      white-space: nowrap;
+    }
+
+    .progress {
+      height: 24px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      font-weight: 800;
+      font-size: 0.9rem;
+      transition: width 0.7s ease;
+    }
+
+    @media (max-width: 576px) {
+      .header-live { padding: 12px 14px; }
+      .logo-header-dash { height: 46px; width: 46px; }
+      .judul-utama-dash { font-size: 1.05rem; }
+      .status-kanan-dash {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+      }
+      .panel-box { padding: 16px 12px; border-radius: 18px; }
+      .item-calon-live { padding: 11px 12px; margin-bottom: 12px; }
+      .foto-live { width: 62px; height: 68px; margin-top: -12px; }
+      .nama-kandidat-live { font-size: 0.92rem; }
+      .skor-kandidat-live { font-size: 0.92rem; }
+      .progress { height: 19px; }
+      .progress-bar { font-size: 0.75rem; }
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 14px 10px;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER LIVE REPORT -->
+  <div class="glass-panel header-live d-flex flex-wrap justify-content-between align-items-center mb-3 mb-md-4">
+    <div class="d-flex align-items-center gap-2 gap-md-3">
+      <img src="https://lh3.googleusercontent.com/d/1gTmbXXZhFyS1cYC8YBsPFiNe8Wj3gHFW" alt="Logo SMAN 4 Cimahi" class="logo-header-dash">
+      <div>
+        <h4 class="fw-bold mb-0 judul-utama-dash">REAL COUNT PEMILIHAN KETUA OSIS & MPK</h4>
+        <span class="text-warning fw-semibold small">SMAN 4 CIMAHI</span>
+      </div>
+    </div>
+    <div class="text-end status-kanan-dash">
+      <span class="live-badge">● LIVE REPORT</span>
+      <h5 class="mt-md-2 mb-0 fw-bold fs-6 fs-md-5">Total Suara: <span id="total-suara" class="text-warning">0</span></h5>
+    </div>
+  </div>
+
+  <!-- KONTEN GRAFIK PEROLEHAN SUARA -->
+  <div class="container-fluid px-3 px-md-4 flex-grow-1">
+    <div class="row g-3 g-md-4">
+      
+      <!-- KOLOM KIRI: LIVE SCORE OSIS -->
+      <div class="col-12 col-lg-6">
+        <div class="glass-panel panel-box">
+          <h5 class="fw-bold text-center text-warning border-bottom border-secondary pb-2 pb-md-3 mb-3 mb-md-4">PEROLEHAN SUARA KETUA OSIS</h5>
+          <div id="list-osis"></div>
+        </div>
+      </div>
+
+      <!-- KOLOM KANAN: LIVE SCORE MPK -->
+      <div class="col-12 col-lg-6">
+        <div class="glass-panel panel-box">
+          <h5 class="fw-bold text-center text-info border-bottom border-secondary pb-2 pb-md-3 mb-3 mb-md-4">PEROLEHAN SUARA KETUA MPK</h5>
+          <div id="list-mpk"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER COPYRIGHT + LOGO -->
+  <footer class="glass-panel mt-4">
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center gap-2 text-center">
+      <img src="https://lh3.googleusercontent.com/d/1Yv-U7Faaf2Pl-xMer0thSKGazYJAlshy" alt="Logo" height="24" style="background: white; padding: 2px; border-radius: 50%;">
+      <span>&copy; 2026 Panitia Pemilihan OSIS & MPK <strong>SMAN 4 Cimahi</strong> PROTECT ICT 4 CMI. Live Count System.</span>
+    </div>
+  </footer>
+
+  <script>
+    // =========================================================================
+    // TEMPEL URL WEB APP GOOGLE APPS SCRIPT KAMU DI BAWAH INI
+    // =========================================================================
+    const API_URL = "https://script.google.com/macros/s/AKfycbw-hWnetczw1vPrNPYuUuXYf5SIdD_JfRREW8Gx9Sjs0YNyNrqXFPcCbfdDPsSqAx2Chw/exec";
+
+    const dataOsis = [
+      { key: "Calon OSIS 1 - Tsalitsa Rania Muthmainnah", nama: "01. Tsalitsa Rania Muthmainnah", foto: "https://lh3.googleusercontent.com/d/1qFeyil07sK_Bk2V03YsmU5FM6UC_IzTv", warna: "bg-warning text-dark" },
+      { key: "Calon OSIS 2 - Raya Putri Haerani", nama: "02. Raya Putri Haerani", foto: "https://lh3.googleusercontent.com/d/1sc83EXN6BOdjpi9SHpY7xKkwYpBmb44i", warna: "bg-info text-dark" },
+      { key: "Calon OSIS 3 - Maisya Putri Hanira", nama: "03. Maisya Putri Hanira", foto: "https://lh3.googleusercontent.com/d/1an2-yMNYYz8S5cEbfS9yW_kf-evZVeUj", warna: "bg-success" }
+    ];
+
+    const dataMpk = [
+      { key: "Calon MPK 1 - Nabil Alvaro Sunandang", nama: "01. Nabil Alvaro Sunandang", foto: "https://lh3.googleusercontent.com/d/1-SDZ55OxlQeTQ-YgsaZ2LcdCQHvOKy-9", warna: "bg-warning text-dark" },
+      { key: "Calon MPK 2 - Fagan Najlaa Anindya Siddiq", nama: "02. Fagan Najla'a Anindya Siddiq", foto: "https://lh3.googleusercontent.com/d/1fhbOgay-isqwjNQ1gM35kRqAedq8co31", warna: "bg-info text-dark" },
+      { key: "Calon MPK 3 - Leoni Levina Nazara", nama: "03. Leoni Levina Nazara", foto: "https://lh3.googleusercontent.com/d/1NlADBXAvmhs-yG-bVs9voAC1rvg7UuiU", warna: "bg-danger" }
+    ];
+
+    function updateDashboard() {
+      fetch(API_URL)
+        .then(response => response.json())
+        .then(res => {
+          document.getElementById('total-suara').innerText = res.total;
+          renderList('list-osis', dataOsis, res.osis, res.total);
+          renderList('list-mpk', dataMpk, res.mpk, res.total);
+        })
+        .catch(err => console.log("Menunggu update...", err));
+    }
+
+    function renderList(elementId, configList, scoreObj, total) {
+      let html = '';
+      configList.forEach(item => {
+        let jumlah = scoreObj[item.key] || 0;
+        let persen = total > 0 ? ((jumlah / total) * 100).toFixed(1) : 0;
+
+        html += `
+          <div class="d-flex align-items-center gap-2 gap-md-3 item-calon-live">
+            <img src="${item.foto}" class="foto-live" alt="${item.nama}">
+            <div class="flex-grow-1">
+              <div class="d-flex justify-content-between align-items-start gap-2 mb-1 mb-md-2">
+                <h5 class="fw-bold mb-0 nama-kandidat-live">${item.nama}</h5>
+                <span class="fw-bold text-warning skor-kandidat-live">${persen}% <small class="text-light opacity-75">(${jumlah} suara)</small></span>
+              </div>
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped progress-bar-animated ${item.warna}" role="progressbar" style="width: ${persen}%">
+                  ${persen}%
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      document.getElementById(elementId).innerHTML = html;
+    }
+
+    updateDashboard();
+    setInterval(updateDashboard, 5000);
+  </script>
+</body>
+</html>
