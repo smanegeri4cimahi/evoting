@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-Voting OSIS & MPK - SMAN 4 Cimahi</title>
+  <title>Pemilihan Selesai - OSIS & MPK SMAN 4 Cimahi</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     :root {
       --bg-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop');
@@ -17,7 +16,7 @@
     }
 
     body {
-      background-image: linear-gradient(rgba(10, 15, 30, 0.72), rgba(10, 15, 30, 0.85)), var(--bg-image);
+      background-image: linear-gradient(rgba(10, 15, 30, 0.76), rgba(10, 15, 30, 0.88)), var(--bg-image);
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -36,128 +35,114 @@
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
     }
 
-    div:where(.swal2-container) div:where(.swal2-popup) {
-      background: rgba(20, 28, 48, 0.65) !important;
-      backdrop-filter: blur(22px) !important;
-      -webkit-backdrop-filter: blur(22px) !important;
-      border: 1.5px solid rgba(255, 255, 255, 0.22) !important;
-      border-radius: 26px !important;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65) !important;
-      color: #ffffff !important;
-    }
-    div:where(.swal2-container) .swal2-title {
-      color: #ffffff !important;
-      font-weight: 800 !important;
-    }
-    div:where(.swal2-container) .swal2-html-container {
-      color: #e2e8f0 !important;
-    }
-    div:where(.swal2-container) button.swal2-styled {
-      border-radius: 12px !important;
-      font-weight: 700 !important;
-      padding: 11px 26px !important;
-    }
-
     .header-glass {
       border-bottom: 2px solid rgba(255, 193, 7, 0.45);
       padding: 15px 0;
-      transition: border-color 0.3s ease;
-    }
-    .header-glass.mode-mpk {
-      border-bottom: 2px solid rgba(224, 90, 71, 0.7);
     }
 
     .logo-bulat {
-      height: 65px;
-      width: 65px;
+      height: 62px;
+      width: 62px;
       object-fit: contain;
       background: rgba(255, 255, 255, 0.92);
       padding: 6px;
       border-radius: 50%;
       box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
-      transition: box-shadow 0.3s ease;
       flex-shrink: 0;
-    }
-    .logo-bulat.mode-mpk {
-      box-shadow: 0 0 18px rgba(224, 90, 71, 0.65);
     }
 
     .main-wrapper {
       flex: 1 0 auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 20px 0 35px 0;
+      padding: 25px 0 45px 0;
     }
 
-    .welcome-card {
-      max-width: 650px;
-      width: 100%;
-      margin: auto;
+    /* Banner Pengumuman Selesai */
+    .banner-selesai {
       border-radius: 28px;
-      padding: 48px 35px;
+      padding: 40px 28px;
       text-align: center;
+      border: 1.5px solid rgba(245, 158, 11, 0.45);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(15, 23, 42, 0.55) 100%);
+      position: relative;
+      overflow: hidden;
     }
 
-    .btn-siap {
+    .badge-status-selesai {
+      display: inline-block;
+      background: rgba(34, 197, 94, 0.2);
+      border: 1px solid #4ade80;
+      color: #86efac;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 1.2px;
+      padding: 7px 22px;
+      border-radius: 50px;
+      margin-bottom: 18px;
+    }
+
+    .btn-hasil-live {
       background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
       border: none;
-      color: #fff;
+      color: #ffffff;
       font-weight: 800;
-      font-size: 1.25rem;
-      padding: 15px 45px;
+      font-size: 1.05rem;
+      padding: 13px 34px;
       border-radius: 50px;
-      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.45);
-      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
-    .btn-siap:hover {
-      transform: scale(1.06);
-      box-shadow: 0 14px 30px rgba(245, 158, 11, 0.65);
-      color: #fff;
+    .btn-hasil-live:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgba(245, 158, 11, 0.6);
+      color: #ffffff;
     }
 
+    /* Judul Seksi Kandidat */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 45px 0 15px 0;
+    }
+    .section-divider span {
+      height: 1px;
+      flex: 1;
+      max-width: 180px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Kartu Kandidat Pop-Out */
     .kandidat-wrapper {
-      padding-top: 95px;
+      padding-top: 85px;
       height: 100%;
     }
 
     .card-popout {
-      background: rgba(22, 27, 45, 0.65);
+      background: rgba(22, 27, 45, 0.68);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border: 1.5px solid rgba(245, 158, 11, 0.5);
       border-radius: 24px;
-      padding: 0 24px 26px 24px;
+      padding: 0 20px 24px 20px;
       text-align: center;
-      cursor: pointer;
-      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-      position: relative;
       height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      transition: transform 0.3s ease;
     }
-
     .card-popout:hover {
-      transform: translateY(-12px);
-      border-color: #fbbf24;
-      background: rgba(35, 43, 70, 0.78);
-      box-shadow: 0 20px 40px rgba(245, 158, 11, 0.25);
+      transform: translateY(-8px);
     }
 
     .foto-popout {
-      width: 210px;
-      height: 230px;
+      width: 185px;
+      height: 205px;
       object-fit: contain;
       object-position: bottom;
-      margin-top: -105px;
+      margin-top: -92px;
       filter: drop-shadow(0 12px 15px rgba(0, 0, 0, 0.65));
-      transition: transform 0.35s ease;
-    }
-
-    .card-popout:hover .foto-popout {
-      transform: scale(1.07);
     }
 
     .badge-jabatan {
@@ -166,79 +151,50 @@
       border: 1px solid #f59e0b;
       color: #fbbf24;
       font-weight: 700;
-      font-size: 0.9rem;
-      padding: 6px 22px;
+      font-size: 0.85rem;
+      padding: 5px 18px;
       border-radius: 50px;
-      margin-top: -12px;
+      margin-top: -10px;
       position: relative;
       z-index: 2;
     }
 
     .nama-kandidat {
-      font-size: 1.45rem;
+      font-size: 1.3rem;
       font-weight: 800;
-      margin-top: 14px;
-      margin-bottom: 12px;
+      margin-top: 12px;
+      margin-bottom: 10px;
       color: #ffffff;
     }
 
     .garis-pemisah {
       border-top: 1px solid rgba(255, 255, 255, 0.15);
-      margin: 10px 0 14px 0;
+      margin: 10px 0 12px 0;
     }
 
     .visi-singkat {
       font-style: italic;
       color: #cbd5e1;
-      font-size: 0.95rem;
-      margin-bottom: 20px;
+      font-size: 0.9rem;
+      margin-bottom: 0;
     }
 
-    .btn-pilih-glass {
-      background: rgba(245, 158, 11, 0.2);
-      border: 1px solid #f59e0b;
-      color: #fbbf24;
-      font-weight: 700;
-      border-radius: 12px;
-      padding: 10px;
-      width: 100%;
-      transition: all 0.25s ease;
-    }
-
-    .card-popout:hover .btn-pilih-glass {
-      background: #f59e0b;
-      color: #0f172a;
-    }
-
+    /* Tema Merah Bata MPK */
     .card-popout.card-mpk {
-      border: 1.5px solid rgba(217, 83, 56, 0.65);
-    }
-    .card-popout.card-mpk:hover {
-      border-color: #f07158;
-      background: rgba(55, 26, 28, 0.78);
-      box-shadow: 0 20px 40px rgba(194, 65, 12, 0.35);
+      border: 1.5px solid rgba(217, 83, 56, 0.68);
     }
     .card-mpk .badge-jabatan {
       background: rgba(154, 42, 26, 0.55);
       border: 1px solid #e05a47;
       color: #ff9e8e;
     }
-    .card-mpk .btn-pilih-glass {
-      background: rgba(194, 65, 12, 0.28);
-      border: 1px solid #e05a47;
-      color: #ff9e8e;
-    }
-    .card-popout.card-mpk:hover .btn-pilih-glass {
-      background: #c2410c;
-      border-color: #f07158;
-      color: #ffffff;
-    }
 
     @media (max-width: 576px) {
       .logo-bulat { height: 48px; width: 48px; }
-      #judul-utama { font-size: 1.1rem; }
-      .kandidat-wrapper { padding-top: 75px; }
-      .foto-popout { width: 165px; height: 185px; margin-top: -85px; }
+      .judul-header { font-size: 1.1rem; }
+      .banner-selesai { padding: 30px 18px; border-radius: 22px; }
+      .kandidat-wrapper { padding-top: 72px; }
+      .foto-popout { width: 155px; height: 175px; margin-top: -78px; }
     }
 
     footer {
@@ -253,281 +209,146 @@
 <body>
 
   <!-- HEADER -->
-  <header class="glass-panel header-glass" id="main-header">
+  <header class="glass-panel header-glass">
     <div class="container d-flex align-items-center justify-content-center gap-3">
-      <img id="header-logo" src="" alt="Logo Header" class="logo-bulat">
+      <img src="https://lh3.googleusercontent.com/d/1gTmbXXZhFyS1cYC8YBsPFiNe8Wj3gHFW" alt="Logo SMAN 4 Cimahi" class="logo-bulat">
       <div class="text-start">
-        <h3 class="fw-bold mb-0 tracking-wide" id="judul-utama">E-VOTING KETUA OSIS & MPK</h3>
-        <p class="mb-0 text-warning fw-semibold" id="sub-judul">SMA NEGERI 4 CIMAHI</p>
+        <h3 class="fw-bold mb-0 judul-header">PEMILIHAN KETUA OSIS & MPK</h3>
+        <p class="mb-0 text-warning fw-semibold small">SMAN 4 CIMAHI PERIODE 2027–2028</p>
       </div>
     </div>
   </header>
 
-  <!-- PEMBUNGKUS KONTEN UTAMA -->
+  <!-- KONTEN UTAMA -->
   <div class="main-wrapper">
+    <div class="container">
 
-    <!-- HALAMAN 0: KONFIRMASI SELAMAT DATANG -->
-    <div class="container" id="page-welcome">
-      <div class="glass-panel welcome-card">
-        <div class="d-flex justify-content-center gap-3 mb-4">
-          <img id="welcome-logo-osis" src="" alt="Logo OSIS" style="height: 85px; width: 85px; object-fit: contain; background: white; padding: 7px; border-radius: 50%;" class="shadow">
-          <img id="welcome-logo-mpk" src="" alt="Logo MPK" style="height: 85px; width: 85px; object-fit: contain; background: white; padding: 7px; border-radius: 50%;" class="shadow">
+      <!-- BANNER PENGUMUMAN SELESAI -->
+      <div class="glass-panel banner-selesai mx-auto" style="max-width: 880px;">
+        <div class="d-flex justify-content-center gap-3 mb-3">
+          <img src="https://lh3.googleusercontent.com/d/1lq90Q2PDLsrZmUZ0fc-CtbCr48vC9zc2" alt="Logo OSIS" style="height: 68px; width: 68px; object-fit: contain; background: white; padding: 6px; border-radius: 50%;" class="shadow">
+          <img src="https://lh3.googleusercontent.com/d/16OaFjbkfP_U3ggLEajrIq52fa4Oce8Rn" alt="Logo MPK" style="height: 68px; width: 68px; object-fit: contain; background: white; padding: 6px; border-radius: 50%;" class="shadow">
         </div>
-        <h1 class="fw-bold mb-3">Selamat Datang!</h1>
-        <p class="fs-5 text-light opacity-75 mb-4">
-          di Pemilihan Umum Ketua OSIS dan Ketua MPK <br>
-          <strong>SMAN 4 Cimahi Periode 2027-2028</strong>.<br><br>
-          Apakah kamu sudah siap memilih?
+
+        <span class="badge-status-selesai">✓ PEMUNGUTAN SUARA TELAH DITUTUP</span>
+
+        <h1 class="fw-bold mb-3">Pemilihan Umum Telah Selesai!</h1>
+        <p class="fs-5 text-light opacity-90 mb-3" style="max-width: 700px; margin: 0 auto;">
+          Terima kasih yang sebesar-besarnya kepada seluruh warga <strong>SMAN 4 Cimahi</strong> (Bapak/Ibu Guru, Staf Tata Usaha, serta seluruh Siswa/i) yang telah berpartisipasi menggunakan hak suaranya dengan tertib, jujur, dan demokratis.
         </p>
-        <button class="btn btn-siap" onclick="mulaiMemilih()">YA, AKU SIAP!</button>
-      </div>
-    </div>
+        <p class="text-warning fw-semibold mb-4">
+          Apresiasi setinggi-tingginya untuk seluruh kandidat yang telah berjuang dengan sportif dan penuh dedikasi.
+        </p>
 
-    <!-- HALAMAN 1: PEMILIHAN KETUA OSIS -->
-    <div class="container d-none" id="page-osis">
+        <a href="dashboard.html" class="btn-hasil-live">LIHAT REKAP HASIL PEROLEHAN SUARA</a>
+      </div>
+
+      <!-- SEKSI 1: CALON KETUA OSIS -->
+      <div class="section-divider">
+        <span></span>
+        <h4 class="fw-bold text-warning mb-0 text-center">KANDIDAT KETUA OSIS</h4>
+        <span></span>
+      </div>
+
       <div class="row g-4 justify-content-center">
-        
+        <!-- OSIS 1 -->
         <div class="col-12 col-md-6 col-lg-4">
           <div class="kandidat-wrapper">
-            <div class="card-popout" onclick="konfirmasiOsis('Calon OSIS 1 - Tsalitsa Rania Muthmainnah')">
-              <div>
-                <img src="https://lh3.googleusercontent.com/d/1qFeyil07sK_Bk2V03YsmU5FM6UC_IzTv" class="foto-popout" alt="OSIS 1">
-                <div><span class="badge-jabatan">01 • Calon Ketua OSIS</span></div>
-                <h4 class="nama-kandidat">Tsalitsa Rania Muthmainnah</h4>
-                <div class="garis-pemisah"></div>
-                <p class="visi-singkat">"Swakarya (Sarana Wadah Aktualisasi Karya) Ruang aktualisasi diri dan aspirasi siswa/i SMAN 4 Cimahi."</p>
-              </div>
-              <button class="btn btn-pilih-glass">PILIH TSALITSA</button>
+            <div class="card-popout">
+              <img src="https://lh3.googleusercontent.com/d/1qFeyil07sK_Bk2V03YsmU5FM6UC_IzTv" class="foto-popout" alt="Tsalitsa Rania Muthmainnah">
+              <div><span class="badge-jabatan">01 • Calon Ketua OSIS</span></div>
+              <h4 class="nama-kandidat">Tsalitsa Rania Muthmainnah</h4>
+              <div class="garis-pemisah"></div>
+              <p class="visi-singkat">"Swakarya (Sarana Wadah Aktualisasi Karya) Ruang aktualisasi diri dan aspirasi siswa/i SMAN 4 Cimahi."</p>
             </div>
           </div>
         </div>
 
+        <!-- OSIS 2 -->
         <div class="col-12 col-md-6 col-lg-4">
           <div class="kandidat-wrapper">
-            <div class="card-popout" onclick="konfirmasiOsis('Calon OSIS 2 - Raya Putri Haerani')">
-              <div>
-                <img src="https://lh3.googleusercontent.com/d/1sc83EXN6BOdjpi9SHpY7xKkwYpBmb44i" class="foto-popout" alt="OSIS 2">
-                <div><span class="badge-jabatan">02 • Calon Ketua OSIS</span></div>
-                <h4 class="nama-kandidat">Raya Putri Haerani</h4>
-                <div class="garis-pemisah"></div>
-                <p class="visi-singkat">"Lensa 4 (layanan penjaringan aspirasi SMAN 4) program penampungan aspirasi."</p>
-              </div>
-              <button class="btn btn-pilih-glass">PILIH RAYA</button>
+            <div class="card-popout">
+              <img src="https://lh3.googleusercontent.com/d/1sc83EXN6BOdjpi9SHpY7xKkwYpBmb44i" class="foto-popout" alt="Raya Putri Haerani">
+              <div><span class="badge-jabatan">02 • Calon Ketua OSIS</span></div>
+              <h4 class="nama-kandidat">Raya Putri Haerani</h4>
+              <div class="garis-pemisah"></div>
+              <p class="visi-singkat">"Lensa 4 (layanan penjaringan aspirasi SMAN 4) program penampungan aspirasi."</p>
             </div>
           </div>
         </div>
 
+        <!-- OSIS 3 -->
         <div class="col-12 col-md-6 col-lg-4">
           <div class="kandidat-wrapper">
-            <div class="card-popout" onclick="konfirmasiOsis('Calon OSIS 3 - Maisya Putri Hanira')">
-              <div>
-                <img src="https://lh3.googleusercontent.com/d/1an2-yMNYYz8S5cEbfS9yW_kf-evZVeUj" class="foto-popout" alt="OSIS 3">
-                <div><span class="badge-jabatan">03 • Calon Ketua OSIS</span></div>
-                <h4 class="nama-kandidat">Maisya Putri Hanira</h4>
-                <div class="garis-pemisah"></div>
-                <p class="visi-singkat">"Exploring your world, sarana para generasi untuk melangkah lebih maju dengan potensinya."</p>
-              </div>
-              <button class="btn btn-pilih-glass">PILIH MAISYA</button>
+            <div class="card-popout">
+              <img src="https://lh3.googleusercontent.com/d/1an2-yMNYYz8S5cEbfS9yW_kf-evZVeUj" class="foto-popout" alt="Maisya Putri Hanira">
+              <div><span class="badge-jabatan">03 • Calon Ketua OSIS</span></div>
+              <h4 class="nama-kandidat">Maisya Putri Hanira</h4>
+              <div class="garis-pemisah"></div>
+              <p class="visi-singkat">"Exploring your world, sarana para generasi untuk melangkah lebih maju dengan potensinya."</p>
             </div>
           </div>
         </div>
-
       </div>
-    </div>
 
-    <!-- HALAMAN 2: PEMILIHAN KETUA MPK -->
-    <div class="container d-none" id="page-mpk">
+      <!-- SEKSI 2: CALON KETUA MPK -->
+      <div class="section-divider mt-5">
+        <span></span>
+        <h4 class="fw-bold mb-0 text-center" style="color: #ff9e8e;">KANDIDAT KETUA MPK</h4>
+        <span></span>
+      </div>
+
       <div class="row g-4 justify-content-center">
-        
+        <!-- MPK 1 -->
         <div class="col-12 col-md-6 col-lg-4">
           <div class="kandidat-wrapper">
-            <div class="card-popout card-mpk" onclick="konfirmasiMpk('Calon MPK 1 - Nabil Alvaro Sunandang')">
-              <div>
-                <img src="https://lh3.googleusercontent.com/d/1-SDZ55OxlQeTQ-YgsaZ2LcdCQHvOKy-9" class="foto-popout" alt="MPK 1">
-                <div><span class="badge-jabatan">01 • Calon Ketua MPK</span></div>
-                <h4 class="nama-kandidat">Nabil Alvaro Sunandang</h4>
-                <div class="garis-pemisah"></div>
-                <p class="visi-singkat">"TITIK SUARA (Satu suara, Satu langkah menuju perubahan) Program penyampaian aspirasi berbasis QR. Agar terstruktur dan terdata."</p>
-              </div>
-              <button class="btn btn-pilih-glass">PILIH NABIL</button>
+            <div class="card-popout card-mpk">
+              <img src="https://lh3.googleusercontent.com/d/1-SDZ55OxlQeTQ-YgsaZ2LcdCQHvOKy-9" class="foto-popout" alt="Nabil Alvaro Sunandang">
+              <div><span class="badge-jabatan">01 • Calon Ketua MPK</span></div>
+              <h4 class="nama-kandidat">Nabil Alvaro Sunandang</h4>
+              <div class="garis-pemisah"></div>
+              <p class="visi-singkat">"TITIK SUARA (Satu suara, Satu langkah menuju perubahan) Program penyampaian aspirasi berbasis QR. Agar terstruktur dan terdata."</p>
             </div>
           </div>
         </div>
 
+        <!-- MPK 2 -->
         <div class="col-12 col-md-6 col-lg-4">
           <div class="kandidat-wrapper">
-            <div class="card-popout card-mpk" onclick="konfirmasiMpk('Calon MPK 2 - Fagan Najlaa Anindya Siddiq')">
-              <div>
-                <img src="https://lh3.googleusercontent.com/d/1fhbOgay-isqwjNQ1gM35kRqAedq8co31" class="foto-popout" alt="MPK 2">
-                <div><span class="badge-jabatan">02 • Calon Ketua MPK</span></div>
-                <h4 class="nama-kandidat">Fagan Najla'a Anindya Siddiq</h4>
-                <div class="garis-pemisah"></div>
-                <p class="visi-singkat">"Good News Board" - Apresiasi bagi siswa, guru, kelas aktif, dan prestasi melalui voting."</p>
-              </div>
-              <button class="btn btn-pilih-glass">PILIH FAGAN</button>
+            <div class="card-popout card-mpk">
+              <img src="https://lh3.googleusercontent.com/d/1fhbOgay-isqwjNQ1gM35kRqAedq8co31" class="foto-popout" alt="Fagan Najla'a Anindya Siddiq">
+              <div><span class="badge-jabatan">02 • Calon Ketua MPK</span></div>
+              <h4 class="nama-kandidat">Fagan Najla'a Anindya Siddiq</h4>
+              <div class="garis-pemisah"></div>
+              <p class="visi-singkat">"Good News Board" - Apresiasi bagi siswa, guru, kelas aktif, dan prestasi melalui voting."</p>
             </div>
           </div>
         </div>
 
+        <!-- MPK 3 -->
         <div class="col-12 col-md-6 col-lg-4">
           <div class="kandidat-wrapper">
-            <div class="card-popout card-mpk" onclick="konfirmasiMpk('Calon MPK 3 - Leoni Levina Nazara')">
-              <div>
-                <img src="https://lh3.googleusercontent.com/d/1NlADBXAvmhs-yG-bVs9voAC1rvg7UuiU" class="foto-popout" alt="MPK 3">
-                <div><span class="badge-jabatan">03 • Calon Ketua MPK</span></div>
-                <h4 class="nama-kandidat">Leoni Levina Nazara</h4>
-                <div class="garis-pemisah"></div>
-                <p class="visi-singkat">"SPEAKER (Sampaikan Pesan, Ide, dan Kritik) Wadah untuk menampung aspirasi, ide, dan kritik siswa secara langsung."</p>
-              </div>
-              <button class="btn btn-pilih-glass">PILIH LEONI</button>
+            <div class="card-popout card-mpk">
+              <img src="https://lh3.googleusercontent.com/d/1NlADBXAvmhs-yG-bVs9voAC1rvg7UuiU" class="foto-popout" alt="Leoni Levina Nazara">
+              <div><span class="badge-jabatan">03 • Calon Ketua MPK</span></div>
+              <h4 class="nama-kandidat">Leoni Levina Nazara</h4>
+              <div class="garis-pemisah"></div>
+              <p class="visi-singkat">"SPEAKER (Sampaikan Pesan, Ide, dan Kritik) Wadah untuk menampung aspirasi, ide, dan kritik siswa secara langsung."</p>
             </div>
           </div>
         </div>
-
       </div>
-    </div>
 
+    </div>
   </div>
 
   <!-- FOOTER COPYRIGHT -->
   <footer class="glass-panel">
     <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center gap-2 text-center">
-      <img id="footer-logo" src="" alt="Logo Footer" style="height: 26px; width: 26px; object-fit: contain; background: white; padding: 2px; border-radius: 50%;">
+      <img src="https://lh3.googleusercontent.com/d/1Yv-U7Faaf2Pl-xMer0thSKGazYJAlshy" alt="Logo Footer" style="height: 26px; width: 26px; object-fit: contain; background: white; padding: 2px; border-radius: 50%;">
       <span>&copy; 2026 Panitia Pemilihan OSIS & MPK <strong>SMAN 4 Cimahi</strong>. Developed by: Protect ICT 4 CMI.</span>
     </div>
   </footer>
 
-  <script>
-    // =========================================================================
-    // TEMPEL URL WEB APP GOOGLE APPS SCRIPT KAMU DI BAWAH INI
-    // =========================================================================
-    const API_URL = "https://script.google.com/macros/s/AKfycbw-hWnetczw1vPrNPYuUuXYf5SIdD_JfRREW8Gx9Sjs0YNyNrqXFPcCbfdDPsSqAx2Chw/exec";
-
-    const LOGO_SEKOLAH = "https://lh3.googleusercontent.com/d/1gTmbXXZhFyS1cYC8YBsPFiNe8Wj3gHFW";
-    const LOGO_OSIS    = "https://lh3.googleusercontent.com/d/1lq90Q2PDLsrZmUZ0fc-CtbCr48vC9zc2";
-    const LOGO_MPK     = "https://lh3.googleusercontent.com/d/16OaFjbkfP_U3ggLEajrIq52fa4Oce8Rn";
-    const LOGO_FOOTER  = "https://lh3.googleusercontent.com/d/1Yv-U7Faaf2Pl-xMer0thSKGazYJAlshy";
-
-    document.getElementById('header-logo').src       = LOGO_SEKOLAH;
-    document.getElementById('welcome-logo-osis').src = LOGO_OSIS;
-    document.getElementById('welcome-logo-mpk').src  = LOGO_MPK;
-    document.getElementById('footer-logo').src       = LOGO_FOOTER;
-
-    let pilihanOsisTerpilih = "";
-
-    function mulaiMemilih() {
-      document.getElementById('page-welcome').classList.add('d-none');
-      document.getElementById('page-osis').classList.remove('d-none');
-      
-      document.getElementById('header-logo').src = LOGO_OSIS;
-      document.getElementById('header-logo').classList.remove('mode-mpk');
-      document.getElementById('main-header').classList.remove('mode-mpk');
-      document.getElementById('judul-utama').innerText = "MEMILIH KETUA OSIS SMAN 4 CIMAHI";
-      document.getElementById('sub-judul').innerText = "Tahap 1 dari 2 • Klik kandidat pilihanmu";
-      document.getElementById('sub-judul').style.color = "#fbbf24";
-      window.scrollTo(0, 0);
-    }
-
-    function konfirmasiOsis(namaKandidat) {
-      Swal.fire({
-        title: 'Kamu yakin dengan pilihannya?',
-        text: "Pilihan Ketua OSIS: " + namaKandidat,
-        icon: 'question',
-        iconColor: '#fbbf24',
-        showCancelButton: true,
-        confirmButtonColor: '#f59e0b',
-        cancelButtonColor: 'rgba(148, 163, 184, 0.35)',
-        confirmButtonText: 'YA, Lanjut ke MPK',
-        cancelButtonText: 'Batal'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          pilihanOsisTerpilih = namaKandidat;
-          document.getElementById('page-osis').classList.add('d-none');
-          document.getElementById('page-mpk').classList.remove('d-none');
-          
-          document.getElementById('header-logo').src = LOGO_MPK;
-          document.getElementById('header-logo').classList.add('mode-mpk');
-          document.getElementById('main-header').classList.add('mode-mpk');
-          document.getElementById('judul-utama').innerText = "MEMILIH KETUA MPK SMAN 4 CIMAHI";
-          document.getElementById('sub-judul').innerText = "Tahap 2 dari 2 • Klik kandidat pilihanmu";
-          document.getElementById('sub-judul').style.color = "#ff9e8e";
-          window.scrollTo(0, 0);
-        }
-      });
-    }
-
-    function konfirmasiMpk(namaKandidatMpk) {
-      Swal.fire({
-        title: 'Kamu yakin dengan pilihannya?',
-        text: "Pilihan Ketua MPK: " + namaKandidatMpk,
-        icon: 'question',
-        iconColor: '#ff9e8e',
-        showCancelButton: true,
-        confirmButtonColor: '#c2410c',
-        cancelButtonColor: 'rgba(148, 163, 184, 0.35)',
-        confirmButtonText: 'YA, Kirim Suara',
-        cancelButtonText: 'Batal'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: 'Menyimpan suara...',
-            allowOutsideClick: false,
-            didOpen: () => { Swal.showLoading(); }
-          });
-
-          fetch(API_URL, {
-            method: 'POST',
-            body: JSON.stringify({
-              osis: pilihanOsisTerpilih,
-              mpk: namaKandidatMpk
-            })
-          })
-          .then(response => response.json())
-          .then(res => {
-            if (res.status === 'sukses') {
-              Swal.fire({
-                title: 'Terima kasih sudah memakai suara kamu!',
-                text: 'Pilihan OSIS dan MPK kamu telah berhasil direkam.',
-                icon: 'success',
-                iconColor: '#4ade80',
-                timer: 2500,
-                showConfirmButton: false
-              }).then(() => {
-                resetKeHalamanAwal();
-              });
-            } else {
-              Swal.fire({
-                title: 'Gagal menyimpan!',
-                text: res.pesan,
-                icon: 'error'
-              });
-            }
-          })
-          .catch(() => {
-            Swal.fire({
-              title: 'Gagal menyimpan!',
-              text: 'Periksa koneksi internet kamu.',
-              icon: 'error'
-            });
-          });
-        }
-      });
-    }
-
-    function resetKeHalamanAwal() {
-      pilihanOsisTerpilih = "";
-      document.getElementById('page-mpk').classList.add('d-none');
-      document.getElementById('page-osis').classList.add('d-none');
-      document.getElementById('page-welcome').classList.remove('d-none');
-      
-      document.getElementById('header-logo').src = LOGO_SEKOLAH;
-      document.getElementById('header-logo').classList.remove('mode-mpk');
-      document.getElementById('main-header').classList.remove('mode-mpk');
-      document.getElementById('judul-utama').innerText = "E-VOTING KETUA OSIS & MPK";
-      document.getElementById('sub-judul').innerText = "SMAN 4 CIMAHI";
-      document.getElementById('sub-judul').style.color = "#fbbf24";
-      window.scrollTo(0, 0);
-    }
-  </script>
 </body>
 </html>
